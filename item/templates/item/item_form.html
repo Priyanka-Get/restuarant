@@ -1,0 +1,22 @@
+{% extends 'item/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+
+    {% csrf_token %}  <!-- creating the csrf tocken-->
+    
+    {{form.Item_id|as_crispy_field}}
+    {{form.Item_name|as_crispy_field}}
+    {{form.Quantity|as_crispy_field}}
+    {{form.Price|as_crispy_field}}
+  <div class="row">
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>&nbsp;&nbsp;Submit</button>
+        </div>
+        </div>
+       
+       
+</form>
+{% endblock content %}

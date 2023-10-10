@@ -1,0 +1,60 @@
+{% extends "item/base.html" %}
+
+
+{% block content %}
+
+
+<style>
+    td {
+        padding-left: 50px;
+    }
+    form{
+        padding-left: 30px;
+    }
+
+
+</style>
+
+<table class="table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr> 
+            <td>Item_id</td>
+            <td>Item_name</td>
+            <td>Quantity</td>
+            <td>Price</td>
+
+
+
+            <td>
+                <a href="{% url 'item_insert'%}" class="btn btn-outline-success">
+                    <i class="fas fa-plus"></i>Add New
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in item_list %}
+        <tr>
+                <td>{{item.Item_id}}</td>
+                
+                <td>{{item.Item_name}}</td>
+                <td>{{item.Quantity}}</td>
+                <td>{{item.Price}}</td>
+               
+                <td>
+                    <a href="{% url 'item_update' item.id %}" class="btn text-secondary px-0">
+                        <i class="far fa-edit fa-lg"></i>
+                    </a>
+                    <form action="{% url 'item_delete' item.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">
+                            <i class="far fa-trash-alt fa-lg text-danger float-right "></i>
+                        </button>
+                    </form>
+                </td>
+         </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
